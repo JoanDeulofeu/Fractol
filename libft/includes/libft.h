@@ -6,7 +6,7 @@
 /*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:40:06 by jgehin            #+#    #+#             */
-/*   Updated: 2019/01/30 17:48:16 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/04 15:53:33 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 char				*ft_strupcase(char *str);
 void				ft_swap(int *a, int *b);
+void				ft_swap_double(double *a, double *b);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					get_next_line(int const fd, char **line);

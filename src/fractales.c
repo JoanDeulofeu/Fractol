@@ -29,6 +29,8 @@ void	ft_init_frac(t_s *s)
 			s->high = -1.2;
 			s->low = 1.2;
 		}
+		s->randx = 0;
+		s->randy = 0;
 		s->zoomx = (s->img_x / (s->right - s->left));
 		s->zoomy = (s->img_y / (s->low - s->high));
 	}
@@ -42,8 +44,17 @@ void	ft_mandelbrot(t_s *s)
 	{
 		s->x = s->pxl <= XWIN ? s->pxl : s->pxl % XWIN;
 		s->y = s->pxl / XWIN;
+		s->zr = 0;
+		s->zi = 0;
 		s->cr = s->x / s->zoomx + s->left;
 		s->ci = s->y / s->zoomy + s->high;
+		if (s->fract == 1) // Julia
+		{
+			ft_swap_double(&s->zr, &s->cr);
+			ft_swap_double(&s->zi, &s->ci);
+			s->cr = 0.285;
+			s->ci = 0.1;
+		}
 		while (s->zr * s->zr + s->zi * s->zi < 4 && s->i < s->itermax)
 		{
 			s->tmp = s->zr;
@@ -56,36 +67,16 @@ void	ft_mandelbrot(t_s *s)
 		else
 			ft_lightup_pixel(s, s->x, s->y, s->i * 255 / s->itermax);
 		s->i = 0;
-		s->zr = 0;
-		s->zi = 0;
-		s->pxl++;
-	}
-	mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
-}
-
-void	ft_julia(t_s *s)
-{
-	ft_init_frac(s);
-	while (s->pxl < XWIN * YWIN)
-	{
-		s->x = s->pxl <= XWIN ? s->pxl : s->pxl % XWIN;
-		s->y = s->pxl / XWIN;
-		s->zr = s->x / s->zoomx + s->left;
-		s->zi = s->y / s->zoomy + s->high;
-		while (s->zr * s->zr + s->zi * s->zi < 4 && s->i < s->itermax)
+		if (s->fract == 0) // mand
 		{
-			s->tmp = s->zr;
-			s->zr = s->zr * s->zr - s->zi * s->zi + 0.285;
-			s->zi = 2 * s->zi * s->tmp + 0.01;
-			s->i++;
+			s->zr = 0;
+			s->zi = 0;
 		}
-		if (s->i == s->itermax)
-			ft_lightup_pixel(s, s->x, s->y, 255);
 		else
-			ft_lightup_pixel(s, s->x, s->y, s->i * 255 / s->itermax);
-		s->i = 0;
-		s->zr = 0;
-		s->zi = 0;
+		{
+			s->cr = 0;
+			s->ci = 0;
+		}
 		s->pxl++;
 	}
 	mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
@@ -93,8 +84,6 @@ void	ft_julia(t_s *s)
 
 void	ft_fractales(t_s *s)
 {
-	if (s->fract == 0)
+	if (s->fract == 0 || s->fract == 1)
 		ft_mandelbrot(s);
-	else if (s->fract == 1)
-		ft_julia(s);
 }
