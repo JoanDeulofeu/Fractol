@@ -2,9 +2,6 @@
 
 void	ft_init_frac(t_s *s)
 {
-	s->pxl = 0;
-	s->x = 0;
-	s->y = 0;
 	s->img_x = XWIN;
 	s->img_y = YWIN;
 	if (s->init == 0)
@@ -34,12 +31,12 @@ void	ft_init_frac(t_s *s)
 void	ft_resetmand(t_s *s, t_thr *thr)
 {
 	thr->i = 0;
-	s->x = s->pxl <= XWIN ? s->pxl : s->pxl % XWIN;
-	s->y = s->pxl / XWIN;
+	thr->x = thr->pxl < XWIN ? thr->pxl : thr->pxl % XWIN;
+	thr->y = thr->pxl / XWIN;
 	thr->zr = 0;
 	thr->zi = 0;
-	thr->cr = s->x / s->zoomx + s->left;
-	thr->ci = s->y / s->zoomy + s->high;
+	thr->cr = thr->x / s->zoomx + s->left;
+	thr->ci = thr->y / s->zoomy + s->high;
 	if (s->fract == 1) // Julia
 	{
 		ft_swap_double(&thr->zr, &thr->cr);
@@ -47,7 +44,7 @@ void	ft_resetmand(t_s *s, t_thr *thr)
 		thr->cr = 0.285;
 		thr->ci = 0.1;
 	}
-	s->pxl++;
+	thr->pxl++;
 }
 
 int		ft_mandelbrot(t_s *s)

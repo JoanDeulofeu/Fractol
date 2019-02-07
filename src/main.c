@@ -14,9 +14,10 @@ int		main(int ac, char **av)
 	s->move = 0;
 	s->savex = 0;
 	s->savey = 0;
+	s->color = 0;
 	s->m_ptr = mlx_init();
 	s->w_ptr = mlx_new_window(s->m_ptr, XWIN, YWIN, "Fractol");
-	s->itermax = 255;
+	s->itermax = 250;
 	ft_init_image(s, XWIN, YWIN);
 	ft_fractales(s);
 	mlx_hook(s->w_ptr, 2, 0, key_hook, (void *)s);
