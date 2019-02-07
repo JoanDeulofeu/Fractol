@@ -2,15 +2,9 @@
 
 void	ft_init_frac(t_s *s)
 {
-	s->zr = 0;
-	s->zi = 0;
-	s->i = 0;
 	s->pxl = 0;
 	s->x = 0;
 	s->y = 0;
-	s->tmp = 0;
-	s->cr = 0;
-	s->ci = 0;
 	s->img_x = XWIN;
 	s->img_y = YWIN;
 	if (s->init == 0)
@@ -37,53 +31,60 @@ void	ft_init_frac(t_s *s)
 	s->init = 1;
 }
 
-void	ft_mandelbrot(t_s *s)
+void	ft_resetmand(t_s *s, t_thr *thr)
 {
-	ft_init_frac(s);
-	while (s->pxl < XWIN * YWIN)
+	thr->i = 0;
+	s->x = s->pxl <= XWIN ? s->pxl : s->pxl % XWIN;
+	s->y = s->pxl / XWIN;
+	thr->zr = 0;
+	thr->zi = 0;
+	thr->cr = s->x / s->zoomx + s->left;
+	thr->ci = s->y / s->zoomy + s->high;
+	if (s->fract == 1) // Julia
 	{
-		s->x = s->pxl <= XWIN ? s->pxl : s->pxl % XWIN;
-		s->y = s->pxl / XWIN;
-		s->zr = 0;
-		s->zi = 0;
-		s->cr = s->x / s->zoomx + s->left;
-		s->ci = s->y / s->zoomy + s->high;
-		if (s->fract == 1) // Julia
-		{
-			ft_swap_double(&s->zr, &s->cr);
-			ft_swap_double(&s->zi, &s->ci);
-			s->cr = 0.285;
-			s->ci = 0.1;
-		}
-		while (s->zr * s->zr + s->zi * s->zi < 4 && s->i < s->itermax)
-		{
-			s->tmp = s->zr;
-			s->zr = s->zr * s->zr - s->zi * s->zi + s->cr;
-			s->zi = 2 * s->zi * s->tmp + s->ci;
-			s->i++;
-		}
-		if (s->i == s->itermax)
-			ft_lightup_pixel(s, s->x, s->y, 255);
-		else
-			ft_lightup_pixel(s, s->x, s->y, s->i * 255 / s->itermax);
-		s->i = 0;
-		if (s->fract == 0) // mand
-		{
-			s->zr = 0;
-			s->zi = 0;
-		}
-		else
-		{
-			s->cr = 0;
-			s->ci = 0;
-		}
-		s->pxl++;
+		ft_swap_double(&thr->zr, &thr->cr);
+		ft_swap_double(&thr->zi, &thr->ci);
+		thr->cr = 0.285;
+		thr->ci = 0.1;
+	}
+	s->pxl++;
+}
+
+int		ft_mandelbrot(t_s *s)
+{
+	pthread_t thread[8];
+	int i;
+
+	i = 0;
+	if (pthread_create(&thread[i++], NULL, ft_thread_1, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_2, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_3, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_4, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_5, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_6, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_7, (void *) s) == -1)
+		ft_exit(0);
+	if (pthread_create(&thread[i++], NULL, ft_thread_8, (void *) s) == -1)
+		ft_exit(0);
+	i = 0;
+	while (i < 8)
+	{
+		if (pthread_join(thread[i++], NULL) == -1)
+			ft_exit(1);
 	}
 	mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
+	return (0);
 }
 
 void	ft_fractales(t_s *s)
 {
+	ft_init_frac(s);
 	if (s->fract == 0 || s->fract == 1)
 		ft_mandelbrot(s);
 }

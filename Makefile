@@ -2,7 +2,7 @@ NAME = fractol
 
 SRC_PATH = src
 
-SRC_NAME = fractales.c main.c event.c image.c math.c
+SRC_NAME = fractales.c main.c event.c image.c math.c thread.c thread2.c
 
 CPPFLAGS = -I libft/includes/ -I /usr/local/include/ -MMD
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) -lpthread $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(HEADER_PATH) -o $@ -c $<

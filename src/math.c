@@ -33,3 +33,17 @@ void    ft_zoom(t_s *s, int x, int y, int zoom)
 		s->itermax -= 3;
 	}
 }
+
+t_thr	*ft_calcul(t_s *s, t_thr *thr)
+{
+	double	tmp;
+
+	while (thr->zr * thr->zr + thr->zi * thr->zi < 4 && thr->i < s->itermax)
+	{
+		tmp = thr->zr;
+		thr->zr = thr->zr * thr->zr - thr->zi * thr->zi + thr->cr;
+		thr->zi = 2 * thr->zi * tmp + thr->ci;
+		thr->i++;
+	}
+	return (thr);
+}

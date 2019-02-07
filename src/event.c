@@ -59,19 +59,20 @@ int		mouse_move(int x, int y, void *param)
 	t_s *s;
 
 	s = (t_s *)param;
-	if (s->move == 1)
-	{
-		if (s->savex < x)
-			s->zr += 0.02;
-		if (s->savex < y)
-			s->zi += 0.02;
-		if (s->savex > x)
-			s->zr -= 0.02;
-		if (s->savex > y)
-			s->zi -= 0.02;
-		s->savex = x;
-		s->savey = y;
-	}
+	x = y; // MERDE
+	// if (s->move == 1)
+	// {
+	// 	if (s->savex < x)
+	// 		s->zr += 0.02;
+	// 	if (s->savex < y)
+	// 		s->zi += 0.02;
+	// 	if (s->savex > x)
+	// 		s->zr -= 0.02;
+	// 	if (s->savex > y)
+	// 		s->zi -= 0.02;
+	// 	s->savex = x;
+	// 	s->savey = y;
+	// }
 	mlx_destroy_image(s->m_ptr, s->img);
 	ft_init_image(s, XWIN, YWIN);
 	ft_fractales(s);
