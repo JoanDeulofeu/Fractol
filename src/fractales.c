@@ -20,10 +20,19 @@ void	ft_init_frac(t_s *s)
 			s->high = -1.2;
 			s->low = 1.2;
 		}
-		s->randx = 0;
-		s->randy = 0;
 		s->zoomx = (s->img_x / (s->right - s->left));
 		s->zoomy = (s->img_y / (s->low - s->high));
+		if (s->fract == 3)
+		{
+			s->left = -1.013;
+			s->right = 0.286;
+			s->high = -1.735;
+			s->low = 0.465;
+			s->zoomx = 512.4;
+			s->zoomy = 302.5;
+		}
+		s->randx = 0;
+		s->randy = 0;
 	}
 	s->init = 1;
 }
@@ -31,24 +40,30 @@ void	ft_init_frac(t_s *s)
 void	ft_resetmand(t_s *s, t_thr *thr)
 {
 	thr->i = 0;
-	thr->x = thr->pxl < XWIN ? thr->pxl : thr->pxl % XWIN;
-	thr->y = thr->pxl / XWIN;
+	thr->x = thr->pxl < s->img_x ? thr->pxl : thr->pxl % s->img_x;
+	thr->y = thr->pxl / s->img_x;
 	thr->zr = 0;
 	thr->zi = 0;
 	thr->cr = thr->x / s->zoomx + s->left;
 	thr->ci = thr->y / s->zoomy + s->high;
-	if (s->fract == 1) // Julia
+	if (s->fract == 1 || s->fract == 3) // Julia
 	{
 		ft_swap_double(&thr->zr, &thr->cr);
 		ft_swap_double(&thr->zi, &thr->ci);
-		thr->cr = 0.285;
-		thr->ci = 0.1;
+		thr->cr = s->movex;
+		thr->ci = s->movey;
+	}
+	if (s->fract == 2) // Fougere
+	{
+		thr->zr = 50;
+		thr->zi = 0;
 	}
 	thr->pxl++;
 }
 
-int		ft_mandelbrot(t_s *s)
+int		ft_fractales(t_s *s)
 {
+	ft_init_frac(s);
 	pthread_t thread[8];
 	int i;
 
@@ -76,12 +91,7 @@ int		ft_mandelbrot(t_s *s)
 			ft_exit(1);
 	}
 	mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
+	if (s->dolink == 0)
+		ft_do_link(s);
 	return (0);
-}
-
-void	ft_fractales(t_s *s)
-{
-	ft_init_frac(s);
-	if (s->fract == 0 || s->fract == 1)
-		ft_mandelbrot(s);
 }

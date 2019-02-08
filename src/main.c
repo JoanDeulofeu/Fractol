@@ -10,6 +10,7 @@ int		main(int ac, char **av)
 	if (!(s = (t_s *)malloc(sizeof(t_s))))
 		return (0);
 	s->init = 0;
+	s->dolink = 0;
 	s->fract = 0;
 	s->move = 0;
 	s->savex = 0;
@@ -22,7 +23,7 @@ int		main(int ac, char **av)
 	ft_fractales(s);
 	mlx_hook(s->w_ptr, 2, 0, key_hook, (void *)s);
 	mlx_hook(s->w_ptr, 4, 0, mouse_hook, (void *)s);
-	// mlx_hook(s->w_ptr, 6, 0, mouse_move, (void *)s);
+	mlx_hook(s->w_ptr, 6, 0, mouse_move, (void *)s);
 	mlx_hook(s->w_ptr, 17, 0, ft_expose, (void *)s);
 	mlx_loop(s->m_ptr);
 	return (0);

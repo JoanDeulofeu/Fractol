@@ -11,11 +11,16 @@ void *ft_thread_1(void *arg)
 		return (0);
 	s = (t_s *)arg;
 	thr1->pxl = 0;
-	while (i++ < (YWIN / 8) * XWIN) //130 pour 1040
+	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
 	{
 		ft_resetmand(s, thr1);
-		thr1 = ft_calcul(s, thr1);
-		ft_lightup_pixel(s, thr1);
+		if (s->fract != 2)
+		{
+			thr1 = ft_calcul(s, thr1);
+			ft_lightup_pixel(s, thr1);
+		}
+		else
+			ft_fougere(s, thr1);
 	}
 	free(thr1);
 	pthread_exit(NULL);
@@ -32,12 +37,17 @@ void *ft_thread_2(void *arg)
 	if (!(thr2 = (t_thr *)malloc(sizeof(t_thr))))
 		return (0);
 	s = (t_s *)arg;
-	thr2->pxl = (YWIN / 8) * XWIN;
-	while (i++ < (YWIN / 8) * XWIN) //130 pour 1040
+	thr2->pxl = (s->img_y / 8) * s->img_x;
+	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
 	{
 		ft_resetmand(s, thr2);
-		thr2 = ft_calcul(s, thr2);
-		ft_lightup_pixel(s, thr2);
+		if (s->fract != 2)
+		{
+			thr2 = ft_calcul(s, thr2);
+			ft_lightup_pixel(s, thr2);
+		}
+		else
+			ft_fougere(s, thr2);
 	}
 	free(thr2);
 	pthread_exit(NULL);
@@ -53,12 +63,17 @@ void *ft_thread_3(void *arg)
 	if (!(thr3 = (t_thr *)malloc(sizeof(t_thr))))
 		return (0);
 	s = (t_s *)arg;
-	thr3->pxl = (YWIN / 8) * 2 * XWIN;
-	while (i++ < (YWIN / 8) * XWIN) //130 pour 1040
+	thr3->pxl = (s->img_y / 8) * 2 * s->img_x;
+	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
 	{
 		ft_resetmand(s, thr3);
-		thr3 = ft_calcul(s, thr3);
-		ft_lightup_pixel(s, thr3);
+		if (s->fract != 2)
+		{
+			thr3 = ft_calcul(s, thr3);
+			ft_lightup_pixel(s, thr3);
+		}
+		else
+			ft_fougere(s, thr3);
 	}
 	free(thr3);
 	pthread_exit(NULL);
@@ -74,12 +89,17 @@ void *ft_thread_4(void *arg)
 	if (!(thr4 = (t_thr *)malloc(sizeof(t_thr))))
 		return (0);
 	s = (t_s *)arg;
-	thr4->pxl = (YWIN / 8) * 3 * XWIN;
-	while (i++ < (YWIN / 8) * XWIN) //130 pour 1040
+	thr4->pxl = (s->img_y / 8) * 3 * s->img_x;
+	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
 	{
 		ft_resetmand(s, thr4);
-		thr4 = ft_calcul(s, thr4);
-		ft_lightup_pixel(s, thr4);
+		if (s->fract != 2)
+		{
+			thr4 = ft_calcul(s, thr4);
+			ft_lightup_pixel(s, thr4);
+		}
+		else
+			ft_fougere(s, thr4);
 	}
 	free(thr4);
 	pthread_exit(NULL);
@@ -95,12 +115,17 @@ void *ft_thread_5(void *arg)
 	if (!(thr5 = (t_thr *)malloc(sizeof(t_thr))))
 		return (0);
 	s = (t_s *)arg;
-	thr5->pxl = (YWIN / 8) * 4 * XWIN;
-	while (i++ < (YWIN / 8) * XWIN) //130 pour 1040
+	thr5->pxl = (s->img_y / 8) * 4 * s->img_x;
+	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
 	{
 		ft_resetmand(s, thr5);
-		thr5 = ft_calcul(s, thr5);
-		ft_lightup_pixel(s, thr5);
+		if (s->fract != 2)
+		{
+			thr5 = ft_calcul(s, thr5);
+			ft_lightup_pixel(s, thr5);
+		}
+		else
+			ft_fougere(s, thr5);
 	}
 	free(thr5);
 	pthread_exit(NULL);

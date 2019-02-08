@@ -27,7 +27,7 @@ typedef struct		s_thr
 	int				blue;
 }					t_thr;
 
-typedef struct		s_s
+typedef struct		s_link
 {
 	void			*m_ptr;
 	void			*w_ptr;
@@ -35,12 +35,14 @@ typedef struct		s_s
 	unsigned char	*s_img;
 	int				itermax;
 	int				move;
+	double			movex;
+	double			movey;
 	int				color;
 	int				fract;
 	double			randx;
 	double			randy;
-	double			savex;
-	double			savey;
+	int				savex;
+	int				savey;
 	double			left;
 	double			right;
 	double			high;
@@ -50,8 +52,43 @@ typedef struct		s_s
 	double			zoomx;
 	double			zoomy;
 	int				init;
+}					t_link;
+
+typedef struct		s_s
+{
+	void			*m_ptr;
+	void			*w_ptr;
+	void			*img;
+	unsigned char	*s_img;
+	int				dolink;
+	double			divlink;
+	t_link			*link1;
+	t_link			*link2;
+	t_link			*link3;
+	t_link			*link4;
+	int				itermax;
+	int				move;
+	double			movex;
+	double			movey;
+	int				color;
+	int				fract;
+	double			randx;
+	double			randy;
+	int				savex;
+	int				savey;
+	double			left;
+	double			right;
+	double			high;
+	double			low;
+	int				img_x;
+	int				img_y;
+	double			zoomx;
+	double			zoomy;
+	int				init;
 }					t_s;
 
+void				ft_do_link(t_s *s);
+void				ft_fougere(t_s *s, t_thr *thr);
 t_thr				*ft_calcul(t_s *s, t_thr *thr);
 void				ft_resetmand(t_s *s, t_thr *thr);
 void				ft_exit(int error);
@@ -63,7 +100,7 @@ void				*ft_thread_5(void *arg);
 void				*ft_thread_6(void *arg);
 void				*ft_thread_7(void *arg);
 void				*ft_thread_8(void *arg);
-void				ft_fractales(t_s *s);
+int					ft_fractales(t_s *s);
 void				ft_zoom(t_s *s, int x, int y, int zoom);
 int					ft_percent(int start, int end, int current);
 int					ft_init_image(t_s *s, int sizex, int sizey);

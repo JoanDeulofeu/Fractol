@@ -2,6 +2,8 @@
 
 unsigned char	ft_red(t_s *s, t_thr *thr)
 {
+	if (s->fract == 2)
+		return (255);
 	if (s->color == 0)
 		return (sin(0.3 * (thr->i * 255 / s->itermax)) * 127 + 128);
 	if (s->color == 1)
@@ -25,6 +27,8 @@ unsigned char	ft_red(t_s *s, t_thr *thr)
 
 unsigned char	ft_green(t_s *s, t_thr *thr)
 {
+	if (s->fract == 2)
+		return (255);
 	if (s->color == 0)
 		return (sin(0.3 * (thr->i * 255 / s->itermax) + 2) * 127 + 128);
 	if (s->color == 1)
@@ -48,6 +52,8 @@ unsigned char	ft_green(t_s *s, t_thr *thr)
 
 unsigned char	ft_blue(t_s *s, t_thr *thr)
 {
+	if (s->fract == 2)
+		return (255);
 	if (s->color == 0)
 		return (sin(0.3 * (thr->i * 255 / s->itermax) + 4) * 127 + 128);
 	if (s->color == 1)
@@ -73,9 +79,9 @@ void	ft_lightup_pixel(t_s *s, t_thr *thr)
 {
 	int new_x;
 
-	if (thr->x <= XWIN && thr->y <= YWIN && thr->x >= 0 && thr->y >= 0)
+	if (thr->x <= s->img_x && thr->y <= s->img_y && thr->x >= 0 && thr->y >= 0)
 	{
-		new_x = thr->x * 4 + ((XWIN * 4) * thr->y);
+		new_x = thr->x * 4 + ((s->img_x * 4) * thr->y);
 		s->s_img[new_x + 0] = ft_blue(s, thr);
 		s->s_img[new_x + 1] = ft_green(s, thr);
 		s->s_img[new_x + 2] = ft_red(s, thr);

@@ -45,22 +45,58 @@ int		key_hook(int key, void *param)
 	if (key == 69)
 	{
 		if (s->itermax < 1000)
-			s->itermax += 25;
+			s->itermax += 24;
 	}
 	if (key == 78)
 	{
 		if (s->itermax > 50)
-			s->itermax -= 25;
+			s->itermax -= 24;
 	}
-	if (key == 18)
+	if (key == 18) //mandelbrot
 	{
 		s->fract = 0;
 		s->init = 0;
+		s->itermax = 250;
 	}
-	if (key == 19)
+	if (key == 19) // julia1
 	{
 		s->fract = 1;
+		s->movex = 0.4;
+		s->movey = 0.2;
 		s->init = 0;
+		s->itermax = 250;
+	}
+	if (key == 20) // julia2
+	{
+		s->fract = 1;
+		s->movex = 0.26;
+		s->movey = 0;
+		s->init = 0;
+		s->itermax = 250;
+	}
+	if (key == 21) //Random
+	{
+		s->fract = 3;
+		s->init = 0;
+		s->movex = 0.14;
+		s->movey = 0;
+		s->itermax = 250;
+	}
+	if (key == 25) // fougere
+	{
+		s->fract = 2;
+		s->init = 0;
+		s->itermax = 24;
+	}
+	if (key == 117)
+	{
+		printf("s->left =%f\n", s->left);
+		printf("s->right =%f\n", s->right);
+		printf("s->high =%f\n", s->high);
+		printf("s->low =%f\n", s->low);
+		printf("s->zoomx =%f\n", s->zoomx);
+		printf("s->zoomy =%f\n", s->zoomy);
+		return (0);
 	}
 	mlx_destroy_image(s->m_ptr, s->img);
 	ft_init_image(s, XWIN, YWIN);
@@ -75,7 +111,10 @@ int		mouse_hook(int key, int x, int y, void *param)
 	s = (t_s *)param;
 	(void)y;
 	if (key == 1)
+	{
 		s->move = s->move == 1 ? 0 : 1;
+		s->itermax = s->move == 1 ? 75 : s->itermax;
+	}
 	if (key == 2)
 		exit(0);
 	if (key == 4)
@@ -93,20 +132,24 @@ int		mouse_move(int x, int y, void *param)
 	t_s *s;
 
 	s = (t_s *)param;
-	x = y; // MERDE
-	// if (s->move == 1)
-	// {
-	// 	if (s->savex < x)
-	// 		s->zr += 0.02;
-	// 	if (s->savex < y)
-	// 		s->zi += 0.02;
-	// 	if (s->savex > x)
-	// 		s->zr -= 0.02;
-	// 	if (s->savex > y)
-	// 		s->zi -= 0.02;
-	// 	s->savex = x;
-	// 	s->savey = y;
-	// }
+	// x = y; // MERDE
+	if (s->move == 1 && (s->fract == 1 || s->fract == 3))
+	{
+		if (s->savex < x)
+			s->movex += 0.02;
+		if (s->savey < y)
+			s->movey += 0.02;
+		if (s->savex > x)
+			s->movex -= 0.02;
+		if (s->savey > y)
+			s->movey -= 0.02;
+		printf("s->savex=%d    x=%d\n", s->savex, x);
+		printf("s->savey=%d    y=%d\n", s->savey, y);
+		printf(" \033[31m s-movex = %f \033[0m \n", s->movex);
+		printf(" \033[33m s-movey = %f \033[0m \n\n", s->movey);
+		s->savex = x;
+		s->savey = y;
+	}
 	mlx_destroy_image(s->m_ptr, s->img);
 	ft_init_image(s, XWIN, YWIN);
 	ft_fractales(s);

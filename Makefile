@@ -2,7 +2,8 @@ NAME = fractol
 
 SRC_PATH = src
 
-SRC_NAME = fractales.c main.c event.c image.c math.c thread.c thread2.c
+SRC_NAME = fractales.c main.c event.c image.c math.c thread.c thread2.c \
+			fougere.c menu.c
 
 CPPFLAGS = -I libft/includes/ -I /usr/local/include/ -MMD
 
