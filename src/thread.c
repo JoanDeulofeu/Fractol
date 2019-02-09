@@ -26,7 +26,6 @@ void *ft_thread_1(void *arg)
 	pthread_exit(NULL);
 }
 
-
 void *ft_thread_2(void *arg)
 {
 	t_thr	*thr2;

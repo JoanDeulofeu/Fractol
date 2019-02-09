@@ -61,7 +61,6 @@ typedef struct		s_s
 	void			*img;
 	unsigned char	*s_img;
 	int				dolink;
-	double			divlink;
 	t_link			*link1;
 	t_link			*link2;
 	t_link			*link3;
@@ -87,7 +86,12 @@ typedef struct		s_s
 	int				init;
 }					t_s;
 
-void				ft_do_link(t_s *s);
+void				ft_affiche_menu(t_s *s);
+unsigned char		ft_red(t_s *s, t_thr *thr);
+unsigned char		ft_green(t_s *s, t_thr *thr);
+unsigned char		ft_blue(t_s *s, t_thr *thr);
+void				ft_lightup_menu(t_s *s, t_thr *thr, unsigned char *s_img);
+int					ft_do_link(t_s *s);
 void				ft_fougere(t_s *s, t_thr *thr);
 t_thr				*ft_calcul(t_s *s, t_thr *thr);
 void				ft_resetmand(t_s *s, t_thr *thr);
@@ -103,7 +107,7 @@ void				*ft_thread_8(void *arg);
 int					ft_fractales(t_s *s);
 void				ft_zoom(t_s *s, int x, int y, int zoom);
 int					ft_percent(int start, int end, int current);
-int					ft_init_image(t_s *s, int sizex, int sizey);
+int					ft_init_image(void *ptr, int sizex, int sizey);
 void				ft_lightup_pixel(t_s *s, t_thr *thr);
 int					key_hook(int key, void *param);
 int					mouse_hook(int key, int i, int j, void *param);

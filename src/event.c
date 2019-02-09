@@ -4,11 +4,6 @@ int		key_hook(int key, void *param)
 {
 	t_s *s;
 
-	// s->left = -2.1;
-	// s->right = 0.6;
-	// s->high = -1.2;
-	// s->low = 1.2;
-
 	s = (t_s *)param;
 	if (key == 53)
 		exit(0);
@@ -52,41 +47,16 @@ int		key_hook(int key, void *param)
 		if (s->itermax > 50)
 			s->itermax -= 24;
 	}
-	if (key == 18) //mandelbrot
-	{
-		s->fract = 0;
-		s->init = 0;
-		s->itermax = 250;
-	}
-	if (key == 19) // julia1
-	{
-		s->fract = 1;
-		s->movex = 0.4;
-		s->movey = 0.2;
-		s->init = 0;
-		s->itermax = 250;
-	}
-	if (key == 20) // julia2
-	{
-		s->fract = 1;
-		s->movex = 0.26;
-		s->movey = 0;
-		s->init = 0;
-		s->itermax = 250;
-	}
-	if (key == 21) //Random
-	{
-		s->fract = 3;
-		s->init = 0;
-		s->movex = 0.14;
-		s->movey = 0;
-		s->itermax = 250;
-	}
 	if (key == 25) // fougere
 	{
 		s->fract = 2;
 		s->init = 0;
 		s->itermax = 24;
+	}
+	if (key == 46)
+	{
+		s->move = s->move == 1 ? 0 : 1;
+		s->itermax = s->move == 1 ? 75 : s->itermax;
 	}
 	if (key == 117)
 	{
@@ -110,10 +80,35 @@ int		mouse_hook(int key, int x, int y, void *param)
 
 	s = (t_s *)param;
 	(void)y;
-	if (key == 1)
+	if (key == 1 && (x >= 0 && x <= 160) && (y >= 0 && y <= 160)) //mandelbrot
 	{
-		s->move = s->move == 1 ? 0 : 1;
-		s->itermax = s->move == 1 ? 75 : s->itermax;
+		s->fract = 0;
+		s->init = 0;
+		s->itermax = 250;
+	}
+	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= 0 && y <= 400)) // julia1
+	{
+		s->fract = 1;
+		s->movex = 0.4;
+		s->movey = 0.2;
+		s->init = 0;
+		s->itermax = 250;
+	}
+	if (key == 1 && (x >= 0 && x <= 160) && (y >= YWIN - 160 && y <= YWIN)) // julia2
+	{
+		s->fract = 1;
+		s->movex = 0.26;
+		s->movey = 0;
+		s->init = 0;
+		s->itermax = 250;
+	}
+	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= YWIN - 160 && y <= YWIN))
+	{
+		s->fract = 3;
+		s->init = 0;
+		s->movex = 0.14;
+		s->movey = 0;
+		s->itermax = 200;
 	}
 	if (key == 2)
 		exit(0);
@@ -132,27 +127,25 @@ int		mouse_move(int x, int y, void *param)
 	t_s *s;
 
 	s = (t_s *)param;
-	// x = y; // MERDE
-	if (s->move == 1 && (s->fract == 1 || s->fract == 3))
+	if (s->move == 1)
 	{
-		if (s->savex < x)
-			s->movex += 0.02;
-		if (s->savey < y)
-			s->movey += 0.02;
-		if (s->savex > x)
-			s->movex -= 0.02;
-		if (s->savey > y)
-			s->movey -= 0.02;
-		printf("s->savex=%d    x=%d\n", s->savex, x);
-		printf("s->savey=%d    y=%d\n", s->savey, y);
-		printf(" \033[31m s-movex = %f \033[0m \n", s->movex);
-		printf(" \033[33m s-movey = %f \033[0m \n\n", s->movey);
-		s->savex = x;
-		s->savey = y;
+		if (s->fract == 1 || s->fract == 3)
+		{
+			if (s->savex < x)
+				s->movex += 0.02;
+			if (s->savey < y)
+				s->movey += 0.02;
+			if (s->savex > x)
+				s->movex -= 0.02;
+			if (s->savey > y)
+				s->movey -= 0.02;
+			s->savex = x;
+			s->savey = y;
+		}
+		mlx_destroy_image(s->m_ptr, s->img);
+		ft_init_image(s, XWIN, YWIN);
+		ft_fractales(s);
 	}
-	mlx_destroy_image(s->m_ptr, s->img);
-	ft_init_image(s, XWIN, YWIN);
-	ft_fractales(s);
 	return (0);
 }
 

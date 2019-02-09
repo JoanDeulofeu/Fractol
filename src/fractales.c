@@ -2,8 +2,16 @@
 
 void	ft_init_frac(t_s *s)
 {
-	s->img_x = XWIN;
-	s->img_y = YWIN;
+	if (s->dolink == 0 || s->dolink > 4)
+	{
+		s->img_x = XWIN;
+		s->img_y = YWIN;
+	}
+	else
+	{
+		s->img_x = 160;
+		s->img_y = 160;
+	}
 	if (s->init == 0)
 	{
 		if (s->fract == 0)
@@ -24,12 +32,24 @@ void	ft_init_frac(t_s *s)
 		s->zoomy = (s->img_y / (s->low - s->high));
 		if (s->fract == 3)
 		{
-			s->left = -1.013;
-			s->right = 0.286;
-			s->high = -1.735;
-			s->low = 0.465;
-			s->zoomx = 512.4;
-			s->zoomy = 302.5;
+			if (s->dolink != 4)
+			{
+				s->left = -1.013;
+				s->right = 0.286;
+				s->high = -1.735;
+				s->low = 0.465;
+				s->zoomx = 512.4;
+				s->zoomy = 302.5;
+			}
+			else
+			{
+				s->left = -1.2;
+				s->right = 0.22;
+				s->high = -2.0;
+				s->low = 0.1;
+				s->zoomx = 68;
+				s->zoomy = 40;
+			}
 		}
 		s->randx = 0;
 		s->randy = 0;
@@ -90,8 +110,11 @@ int		ft_fractales(t_s *s)
 		if (pthread_join(thread[i++], NULL) == -1)
 			ft_exit(1);
 	}
-	mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
+	if (s->dolink == 0 || s->dolink == 42)
+		mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
 	if (s->dolink == 0)
 		ft_do_link(s);
+	if (s->dolink == 42)
+		ft_affiche_menu(s);
 	return (0);
 }
