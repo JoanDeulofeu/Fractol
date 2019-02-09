@@ -11,6 +11,8 @@ int		main(int ac, char **av)
 		return (0);
 	s->init = 0;
 	s->dolink = 0;
+	s->afflink = 0;
+	s->affmenu = 1;
 	s->fract = 0;
 	s->move = 0;
 	s->savex = 0;

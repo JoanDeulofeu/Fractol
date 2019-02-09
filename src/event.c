@@ -19,6 +19,10 @@ int		key_hook(int key, void *param)
 		s->high += key == 125 ? 30 / s->zoomy : -(30 / s->zoomy);
 		s->low += key == 125 ? 30 / s->zoomy : -(30 / s->zoomy);
 	}
+	if (key == 3)
+		s->afflink = s->afflink == 0 ? 1 : 0;
+	if (key == 46)
+		s->affmenu = s->affmenu == 0 ? 1 : 0;
 	if (key == 83)
 		s->color = 0;
 	if (key == 84)
@@ -53,7 +57,7 @@ int		key_hook(int key, void *param)
 		s->init = 0;
 		s->itermax = 24;
 	}
-	if (key == 46)
+	if (key == 37)
 	{
 		s->move = s->move == 1 ? 0 : 1;
 		s->itermax = s->move == 1 ? 75 : s->itermax;
@@ -80,13 +84,13 @@ int		mouse_hook(int key, int x, int y, void *param)
 
 	s = (t_s *)param;
 	(void)y;
-	if (key == 1 && (x >= 0 && x <= 160) && (y >= 0 && y <= 160)) //mandelbrot
+	if (key == 1 && (x >= 0 && x <= 160) && (y >= 0 && y <= 160) && s->afflink == 0) //mandelbrot
 	{
 		s->fract = 0;
 		s->init = 0;
 		s->itermax = 250;
 	}
-	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= 0 && y <= 400)) // julia1
+	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= 0 && y <= 400) && s->afflink == 0) // julia1
 	{
 		s->fract = 1;
 		s->movex = 0.4;
@@ -94,7 +98,7 @@ int		mouse_hook(int key, int x, int y, void *param)
 		s->init = 0;
 		s->itermax = 250;
 	}
-	if (key == 1 && (x >= 0 && x <= 160) && (y >= YWIN - 160 && y <= YWIN)) // julia2
+	if (key == 1 && (x >= 0 && x <= 160) && (y >= YWIN - 160 && y <= YWIN) && s->afflink == 0) // julia2
 	{
 		s->fract = 1;
 		s->movex = 0.26;
@@ -102,7 +106,7 @@ int		mouse_hook(int key, int x, int y, void *param)
 		s->init = 0;
 		s->itermax = 250;
 	}
-	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= YWIN - 160 && y <= YWIN))
+	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= YWIN - 160 && y <= YWIN) && s->afflink == 0)
 	{
 		s->fract = 3;
 		s->init = 0;

@@ -51,8 +51,6 @@ void	ft_init_frac(t_s *s)
 				s->zoomy = 40;
 			}
 		}
-		s->randx = 0;
-		s->randy = 0;
 	}
 	s->init = 1;
 }
@@ -114,7 +112,8 @@ int		ft_fractales(t_s *s)
 		mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->img, 0, 0);
 	if (s->dolink == 0)
 		ft_do_link(s);
-	if (s->dolink == 42)
-		ft_affiche_menu(s);
+	if (s->dolink == 42 && s->afflink == 0)
+		ft_affiche_link(s);
+	ft_dply_menu(s);
 	return (0);
 }

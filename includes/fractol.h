@@ -11,6 +11,8 @@
 # include <math.h>
 # define XWIN 1040
 # define YWIN 1040
+# define BLACK 0x3A3A3A
+# define WHITE 0xF6F6F6
 
 typedef struct		s_thr
 {
@@ -22,36 +24,12 @@ typedef struct		s_thr
 	double			x;
 	double			y;
 	int				pxl;
-	int				red;
-	int				green;
-	int				blue;
 }					t_thr;
 
 typedef struct		s_link
 {
-	void			*m_ptr;
-	void			*w_ptr;
 	void			*img;
 	unsigned char	*s_img;
-	int				itermax;
-	int				move;
-	double			movex;
-	double			movey;
-	int				color;
-	int				fract;
-	double			randx;
-	double			randy;
-	int				savex;
-	int				savey;
-	double			left;
-	double			right;
-	double			high;
-	double			low;
-	double			img_x;
-	double			img_y;
-	double			zoomx;
-	double			zoomy;
-	int				init;
 }					t_link;
 
 typedef struct		s_s
@@ -67,12 +45,12 @@ typedef struct		s_s
 	t_link			*link4;
 	int				itermax;
 	int				move;
+	int				afflink;
+	int				affmenu;
 	double			movex;
 	double			movey;
 	int				color;
 	int				fract;
-	double			randx;
-	double			randy;
 	int				savex;
 	int				savey;
 	double			left;
@@ -86,7 +64,8 @@ typedef struct		s_s
 	int				init;
 }					t_s;
 
-void				ft_affiche_menu(t_s *s);
+void				ft_dply_menu(t_s *s);
+void				ft_affiche_link(t_s *s);
 unsigned char		ft_red(t_s *s, t_thr *thr);
 unsigned char		ft_green(t_s *s, t_thr *thr);
 unsigned char		ft_blue(t_s *s, t_thr *thr);
