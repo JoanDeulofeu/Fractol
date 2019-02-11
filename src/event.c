@@ -74,7 +74,7 @@ int		key_hook(int key, void *param)
 	}
 	mlx_destroy_image(s->m_ptr, s->img);
 	ft_init_image(s, XWIN, YWIN);
-	ft_fractales(s);
+	ft_fractales(s, 0);
 	return (0);
 }
 
@@ -122,7 +122,7 @@ int		mouse_hook(int key, int x, int y, void *param)
 		ft_zoom(s, x, y, 0);
 	mlx_destroy_image(s->m_ptr, s->img);
 	ft_init_image(s, XWIN, YWIN);
-	ft_fractales(s);
+	ft_fractales(s, 0);
 	return (0);
 }
 
@@ -148,7 +148,7 @@ int		mouse_move(int x, int y, void *param)
 		}
 		mlx_destroy_image(s->m_ptr, s->img);
 		ft_init_image(s, XWIN, YWIN);
-		ft_fractales(s);
+		ft_fractales(s, 0);
 	}
 	return (0);
 }

@@ -1,5 +1,17 @@
 #include "fractol.h"
 
+void	ft_viseur(t_s *s)
+{
+	int i;
+
+	i = 0;
+	while (i++ < 19)
+		mlx_pixel_put (s->m_ptr, s->w_ptr, 490 + i, 500, BLACK);
+	i = 0;
+	while (i++ < 19)
+		mlx_pixel_put (s->m_ptr, s->w_ptr, 500, 490 + i, BLACK);
+}
+
 void	ft_dply_menu(t_s *s)
 {
 	int color;
@@ -30,4 +42,5 @@ void	ft_dply_menu(t_s *s)
 	else
 		mlx_string_put(s->m_ptr, s->w_ptr, 20, 165, color,
 			"M = Display menu");
+	ft_viseur(s);
 }
