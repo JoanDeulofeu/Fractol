@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:25:04 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:30:48 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include <stdlib.h>
@@ -6,7 +18,7 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <string.h>
-# include <stdio.h> //ATTENTION
+# include <stdio.h>
 # include <pthread.h>
 # include <math.h>
 # define XWIN 1040
@@ -67,9 +79,9 @@ typedef struct		s_s
 	int				scope;
 }					t_s;
 
-void 				ft_init_mand(t_s *s);
-void 				ft_init_julia(t_s *s, int julia);
-void 				ft_init_joan(t_s *s);
+void				ft_init_mand(t_s *s);
+void				ft_init_julia(t_s *s, int julia);
+void				ft_init_joan(t_s *s);
 void				ft_dply_menu(t_s *s);
 void				ft_affiche_link(t_s *s);
 unsigned char		ft_red(t_s *s, t_thr *thr);

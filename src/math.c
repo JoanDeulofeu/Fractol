@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:27:45 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:28:00 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int		ft_percent(int start, int end, int current)
@@ -10,18 +22,18 @@ int		ft_percent(int start, int end, int current)
 	return ((distance == 0) ? 100 : (placement / distance) * 100);
 }
 
-void    ft_dezoom(t_s *s)
+void	ft_dezoom(t_s *s)
 {
-		s->zoomx *= 0.8;
-		s->zoomy *= 0.8;
-		s->left = (s->left * s->zoomx) / s->zoomx;
-		s->right = (s->right * s->zoomx) / s->zoomx;
-		s->high = (s->high * s->zoomy) / s->zoomy;
-		s->low = (s->low * s->zoomy) / s->zoomy;
-		s->itermax -= 3;
+	s->zoomx *= 0.8;
+	s->zoomy *= 0.8;
+	s->left = (s->left * s->zoomx) / s->zoomx;
+	s->right = (s->right * s->zoomx) / s->zoomx;
+	s->high = (s->high * s->zoomy) / s->zoomy;
+	s->low = (s->low * s->zoomy) / s->zoomy;
+	s->itermax -= 3;
 }
 
-void    ft_zoom(t_s *s, int x, int y, int zoom)
+void	ft_zoom(t_s *s, int x, int y, int zoom)
 {
 	double diffx;
 	double diffy;

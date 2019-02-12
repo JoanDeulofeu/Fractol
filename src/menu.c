@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   menu.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:28:08 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:28:12 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	ft_viseur(t_s *s)
@@ -6,11 +18,12 @@ void	ft_viseur(t_s *s)
 
 	i = 0;
 	while (i++ < 19)
-		mlx_pixel_put (s->m_ptr, s->w_ptr, 490 + i, 500, BLACK);
+		mlx_pixel_put(s->m_ptr, s->w_ptr, 490 + i, 500, BLACK);
 	i = 0;
 	while (i++ < 19)
-		mlx_pixel_put (s->m_ptr, s->w_ptr, 500, 490 + i, BLACK);
+		mlx_pixel_put(s->m_ptr, s->w_ptr, 500, 490 + i, BLACK);
 }
+
 void	ft_instruc_menu(t_s *s, int color)
 {
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165, color,

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   thread2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:28:33 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:28:36 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void *ft_thread_6(void *arg)
+void	*ft_thread_6(void *arg)
 {
 	t_thr	*thr6;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;
@@ -26,10 +38,10 @@ void *ft_thread_6(void *arg)
 	pthread_exit(NULL);
 }
 
-void *ft_thread_7(void *arg)
+void	*ft_thread_7(void *arg)
 {
 	t_thr	*thr7;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;
@@ -52,10 +64,10 @@ void *ft_thread_7(void *arg)
 	pthread_exit(NULL);
 }
 
-void *ft_thread_8(void *arg)
+void	*ft_thread_8(void *arg)
 {
 	t_thr	*thr8;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;

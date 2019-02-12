@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   thread.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:28:24 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:28:28 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void *ft_thread_1(void *arg)
+void	*ft_thread_1(void *arg)
 {
 	t_thr	*thr1;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;
@@ -26,10 +38,10 @@ void *ft_thread_1(void *arg)
 	pthread_exit(NULL);
 }
 
-void *ft_thread_2(void *arg)
+void	*ft_thread_2(void *arg)
 {
 	t_thr	*thr2;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;
@@ -52,10 +64,10 @@ void *ft_thread_2(void *arg)
 	pthread_exit(NULL);
 }
 
-void *ft_thread_3(void *arg)
+void	*ft_thread_3(void *arg)
 {
 	t_thr	*thr3;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;
@@ -78,10 +90,10 @@ void *ft_thread_3(void *arg)
 	pthread_exit(NULL);
 }
 
-void *ft_thread_4(void *arg)
+void	*ft_thread_4(void *arg)
 {
 	t_thr	*thr4;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;
@@ -104,10 +116,10 @@ void *ft_thread_4(void *arg)
 	pthread_exit(NULL);
 }
 
-void *ft_thread_5(void *arg)
+void	*ft_thread_5(void *arg)
 {
 	t_thr	*thr5;
-	t_s 	*s;
+	t_s		*s;
 	int		i;
 
 	i = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:26:34 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:26:54 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 unsigned char	ft_red(t_s *s, t_thr *thr)
@@ -75,7 +87,7 @@ unsigned char	ft_blue(t_s *s, t_thr *thr)
 	return (0);
 }
 
-void	ft_lightup_pixel(t_s *s, t_thr *thr)
+void			ft_lightup_pixel(t_s *s, t_thr *thr)
 {
 	int new_x;
 
@@ -88,6 +100,7 @@ void	ft_lightup_pixel(t_s *s, t_thr *thr)
 	else if (s->dolink == 4)
 		ft_lightup_menu(s, thr, s->link4->s_img);
 	else
+	{
 		if (thr->x <= s->img_x && thr->y <= s->img_y &&
 			thr->x >= 0 && thr->y >= 0)
 		{
@@ -97,9 +110,10 @@ void	ft_lightup_pixel(t_s *s, t_thr *thr)
 			s->s_img[new_x + 2] = ft_red(s, thr);
 			s->s_img[new_x + 3] = 0;
 		}
+	}
 }
 
-int		ft_init_image(void *ptr, int sizex, int sizey)
+int				ft_init_image(void *ptr, int sizex, int sizey)
 {
 	int size;
 	int	bpp;

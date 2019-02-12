@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   link.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:27:16 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:27:20 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	ft_affiche_link(t_s *s)
@@ -81,13 +93,13 @@ void	ft_lightup_menu(t_s *s, t_thr *thr, unsigned char *s_img)
 {
 	int new_x;
 
-		if (thr->x <= s->img_x && thr->y <= s->img_y &&
-			thr->x >= 0 && thr->y >= 0)
-		{
-			new_x = thr->x * 4 + ((s->img_x * 4) * thr->y);
-			s_img[new_x + 0] = ft_blue(s, thr);
-			s_img[new_x + 1] = ft_green(s, thr);
-			s_img[new_x + 2] = ft_red(s, thr);
-			s_img[new_x + 3] = 0;
-		}
+	if (thr->x <= s->img_x && thr->y <= s->img_y &&
+		thr->x >= 0 && thr->y >= 0)
+	{
+		new_x = thr->x * 4 + ((s->img_x * 4) * thr->y);
+		s_img[new_x + 0] = ft_blue(s, thr);
+		s_img[new_x + 1] = ft_green(s, thr);
+		s_img[new_x + 2] = ft_red(s, thr);
+		s_img[new_x + 3] = 0;
+	}
 }

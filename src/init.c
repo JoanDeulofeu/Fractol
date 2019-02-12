@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:27:06 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:27:08 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	ft_init_mand(t_s *s)
@@ -59,10 +71,10 @@ void	ft_init_joan(t_s *s)
 
 int		ft_init_image_menu(t_s *s, void *ptr, int sizex, int sizey)
 {
-	int size;
-	int	bpp;
-	int endian;
-	t_link *link;
+	int		size;
+	int		bpp;
+	int		endian;
+	t_link	*link;
 
 	link = (t_link *)ptr;
 	size = sizex;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractales.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/12 15:26:16 by jgehin            #+#    #+#             */
+/*   Updated: 2019/02/12 15:37:22 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	ft_init_frac(t_s *s)
@@ -42,7 +54,7 @@ void	ft_resetmand(t_s *s, t_thr *thr)
 		thr->cr = s->movex;
 		thr->ci = s->movey;
 	}
-	if (s->fract == 2) // Fougere
+	if (s->fract == 2)
 	{
 		thr->zr = 50;
 		thr->zi = 0;
@@ -63,30 +75,28 @@ void	ft_fin(t_s *s)
 
 int		ft_fractales(t_s *s, int i)
 {
-	ft_init_frac(s);
 	pthread_t thread[8];
 
-	if (pthread_create(&thread[i++], NULL, ft_thread_1, (void *) s) == -1)
+	ft_init_frac(s);
+	if (pthread_create(&thread[i++], NULL, ft_thread_1, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_2, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_2, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_3, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_3, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_4, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_4, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_5, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_5, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_6, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_6, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_7, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_7, (void *)s) == -1)
 		ft_exit(0, s);
-	if (pthread_create(&thread[i++], NULL, ft_thread_8, (void *) s) == -1)
+	if (pthread_create(&thread[i++], NULL, ft_thread_8, (void *)s) == -1)
 		ft_exit(0, s);
 	while (i++ < 16)
-	{
 		if (pthread_join(thread[i - 9], NULL) == -1)
 			ft_exit(1, s);
-	}
 	ft_fin(s);
 	return (0);
 }
