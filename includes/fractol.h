@@ -50,6 +50,7 @@ typedef struct		s_s
 	double			movex;
 	double			movey;
 	int				color;
+	int				julia;
 	int				fract;
 	int				savefract;
 	int				savex;
@@ -63,10 +64,11 @@ typedef struct		s_s
 	double			zoomx;
 	double			zoomy;
 	int				init;
+	int				scope;
 }					t_s;
 
 void 				ft_init_mand(t_s *s);
-void 				ft_init_julia(t_s *s);
+void 				ft_init_julia(t_s *s, int julia);
 void 				ft_init_joan(t_s *s);
 void				ft_dply_menu(t_s *s);
 void				ft_affiche_link(t_s *s);
@@ -75,6 +77,7 @@ unsigned char		ft_green(t_s *s, t_thr *thr);
 unsigned char		ft_blue(t_s *s, t_thr *thr);
 void				ft_lightup_menu(t_s *s, t_thr *thr, unsigned char *s_img);
 int					ft_do_link(t_s *s);
+void				ft_init_frac(t_s *s);
 void				ft_fougere(t_s *s, t_thr *thr);
 t_thr				*ft_calcul(t_s *s, t_thr *thr);
 void				ft_resetmand(t_s *s, t_thr *thr);

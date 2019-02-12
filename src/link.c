@@ -43,6 +43,7 @@ int		ft_do_link(t_s *s)
 		return (0);
 	s->dolink = 2;
 	s->fract = 1;
+	s->julia = 1;
 	s->movex = 0.4;
 	s->movey = 0.2;
 	s->init = 0;
@@ -54,7 +55,7 @@ int		ft_do_link(t_s *s)
 	if (!(s->link3 = (t_link *)malloc(sizeof(t_link))))
 		return (0);
 	s->dolink = 3;
-	s->fract = 1;
+	s->julia = 2;
 	s->movex = 0.26;
 	s->movey = 0;
 	s->init = 0;
@@ -75,9 +76,11 @@ int		ft_do_link(t_s *s)
 	ft_fractales(s, 0);
 	mlx_put_image_to_window(s->m_ptr, s->w_ptr, s->link4->img, XWIN - 160, YWIN - 160);
 	s->dolink = 42;
+	s->julia = 1;
 	s->fract = s->savefract;
 	s->init = 0;
-	s->itermax = 200;
+	ft_init_frac(s);
+	s->itermax = 250;
 	s->color = 0;
 	return (0);
 }

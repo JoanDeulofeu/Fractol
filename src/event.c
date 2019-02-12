@@ -21,6 +21,8 @@ int		key_hook(int key, void *param)
 	}
 	if (key == 3)
 		s->afflink = s->afflink == 0 ? 1 : 0;
+	if (key == 9)
+		s->scope = s->scope == 0 ? 1 : 0;
 	if (key == 46)
 		s->affmenu = s->affmenu == 0 ? 1 : 0;
 	if (key == 83)
@@ -70,6 +72,9 @@ int		key_hook(int key, void *param)
 		printf("s->low =%f\n", s->low);
 		printf("s->zoomx =%f\n", s->zoomx);
 		printf("s->zoomy =%f\n", s->zoomy);
+		printf("s->movex =%f\n", s->movex);
+		printf("s->movey =%f\n", s->movey);
+		printf("s->itermax =%d\n", s->itermax);
 		return (0);
 	}
 	mlx_destroy_image(s->m_ptr, s->img);
@@ -93,6 +98,7 @@ int		mouse_hook(int key, int x, int y, void *param)
 	if (key == 1 && (x >= XWIN - 160 && x <= XWIN) && (y >= 0 && y <= 400) && s->afflink == 0) // julia1
 	{
 		s->fract = 1;
+		s->julia = 1;
 		s->movex = 0.4;
 		s->movey = 0.2;
 		s->init = 0;
@@ -101,6 +107,7 @@ int		mouse_hook(int key, int x, int y, void *param)
 	if (key == 1 && (x >= 0 && x <= 160) && (y >= YWIN - 160 && y <= YWIN) && s->afflink == 0) // julia2
 	{
 		s->fract = 1;
+		s->julia = 2;
 		s->movex = 0.26;
 		s->movey = 0;
 		s->init = 0;

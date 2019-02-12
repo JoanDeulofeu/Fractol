@@ -17,7 +17,7 @@ void	ft_init_frac(t_s *s)
 		if (s->fract == 0)
 			ft_init_mand(s);
 		if (s->fract == 1)
-			ft_init_julia(s);
+			ft_init_julia(s, s->julia);
 		s->zoomx = (s->img_x / (s->right - s->left));
 		s->zoomy = (s->img_y / (s->low - s->high));
 		if (s->fract == 3)

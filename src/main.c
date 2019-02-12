@@ -7,9 +7,11 @@ void 	ft_init_main(t_s *s)
 	s->dolink = 0;
 	s->afflink = 0;
 	s->affmenu = 1;
+	s->julia = 1;
 	s->move = 0;
 	s->savex = 0;
 	s->savey = 0;
+	s->scope = 1;
 	s->color = 0;
 	s->m_ptr = mlx_init();
 	s->w_ptr = mlx_new_window(s->m_ptr, XWIN, YWIN, "Fractol");
@@ -26,8 +28,8 @@ int		main(int ac, char **av)
 		ft_exit(2, s);
 	if (!(ft_strcmp(av[1], "Mandelbrot")))
 		ft_init_mand(s);
-	else if (!(ft_strcmp(av[1], "Julia")))
-		ft_init_julia(s);
+	else if (!(ft_strcmp(av[1], "Julia"))) // probleme ouverture menu...
+		ft_init_julia(s, 1);
 	else if (!(ft_strcmp(av[1], "Joan")))
 		ft_init_joan(s);
 	else

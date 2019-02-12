@@ -9,25 +9,23 @@ void	ft_init_mand(t_s *s)
 	s->low = 1.2;
 }
 
-void	ft_init_julia(t_s *s)
+void	ft_init_julia(t_s *s, int julia)
 {
 	s->fract = 1;
+	s->julia = julia;
 	s->left = -1;
 	s->right = 1;
 	s->high = -1.2;
 	s->low = 1.2;
-	if (s->dolink != 42)
+	if (s->julia == 2)
 	{
-		if (s->dolink == 3)
-		{
-			s->movex = 0.26;
-			s->movey = 0;
-		}
-		else
-		{
-			s->movex = 0.4;
-			s->movey = 0.2;
-		}
+		s->movex = 0.26;
+		s->movey = 0;
+	}
+	else
+	{
+		s->movex = 0.4;
+		s->movey = 0.2;
 	}
 }
 
@@ -42,7 +40,7 @@ void	ft_init_joan(t_s *s)
 		s->low = 0.465;
 		s->zoomx = 512.4;
 		s->zoomy = 302.5;
-		s->itermax = 200;
+		s->itermax = 250;
 		s->movex = 0.14;
 		s->movey = 0;
 	}
