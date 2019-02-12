@@ -76,6 +76,7 @@ unsigned char		ft_red(t_s *s, t_thr *thr);
 unsigned char		ft_green(t_s *s, t_thr *thr);
 unsigned char		ft_blue(t_s *s, t_thr *thr);
 void				ft_lightup_menu(t_s *s, t_thr *thr, unsigned char *s_img);
+int					ft_init_image_menu(t_s *s, void *ptr, int sizex, int sizey);
 int					ft_do_link(t_s *s);
 void				ft_init_frac(t_s *s);
 void				ft_fougere(t_s *s, t_thr *thr);

@@ -7,11 +7,13 @@ void	ft_init_mand(t_s *s)
 	s->right = 0.6;
 	s->high = -1.2;
 	s->low = 1.2;
+	s->itermax = 250;
 }
 
 void	ft_init_julia(t_s *s, int julia)
 {
 	s->fract = 1;
+	s->itermax = 250;
 	s->julia = julia;
 	s->left = -1;
 	s->right = 1;
@@ -53,4 +55,21 @@ void	ft_init_joan(t_s *s)
 		s->zoomx = 68;
 		s->zoomy = 40;
 	}
+}
+
+int		ft_init_image_menu(t_s *s, void *ptr, int sizex, int sizey)
+{
+	int size;
+	int	bpp;
+	int endian;
+	t_link *link;
+
+	link = (t_link *)ptr;
+	size = sizex;
+	bpp = 4;
+	endian = 0;
+	link->img = mlx_new_image(s->m_ptr, sizex, sizey);
+	link->s_img = (unsigned char*)(mlx_get_data_addr(link->img, &(bpp), &(size),
+	&(endian)));
+	return (0);
 }

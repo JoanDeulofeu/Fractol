@@ -11,7 +11,7 @@ void *ft_thread_1(void *arg)
 		return (0);
 	s = (t_s *)arg;
 	thr1->pxl = 0;
-	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
+	while (i++ < (s->img_y / 8) * s->img_x)
 	{
 		ft_resetmand(s, thr1);
 		if (s->fract != 2)
@@ -37,7 +37,7 @@ void *ft_thread_2(void *arg)
 		return (0);
 	s = (t_s *)arg;
 	thr2->pxl = (s->img_y / 8) * s->img_x;
-	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
+	while (i++ < (s->img_y / 8) * s->img_x)
 	{
 		ft_resetmand(s, thr2);
 		if (s->fract != 2)
@@ -63,7 +63,7 @@ void *ft_thread_3(void *arg)
 		return (0);
 	s = (t_s *)arg;
 	thr3->pxl = (s->img_y / 8) * 2 * s->img_x;
-	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
+	while (i++ < (s->img_y / 8) * s->img_x)
 	{
 		ft_resetmand(s, thr3);
 		if (s->fract != 2)
@@ -89,7 +89,7 @@ void *ft_thread_4(void *arg)
 		return (0);
 	s = (t_s *)arg;
 	thr4->pxl = (s->img_y / 8) * 3 * s->img_x;
-	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
+	while (i++ < (s->img_y / 8) * s->img_x)
 	{
 		ft_resetmand(s, thr4);
 		if (s->fract != 2)
@@ -115,7 +115,7 @@ void *ft_thread_5(void *arg)
 		return (0);
 	s = (t_s *)arg;
 	thr5->pxl = (s->img_y / 8) * 4 * s->img_x;
-	while (i++ < (s->img_y / 8) * s->img_x) //130 pour 1040
+	while (i++ < (s->img_y / 8) * s->img_x)
 	{
 		ft_resetmand(s, thr5);
 		if (s->fract != 2)

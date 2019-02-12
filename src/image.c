@@ -88,7 +88,8 @@ void	ft_lightup_pixel(t_s *s, t_thr *thr)
 	else if (s->dolink == 4)
 		ft_lightup_menu(s, thr, s->link4->s_img);
 	else
-		if (thr->x <= s->img_x && thr->y <= s->img_y && thr->x >= 0 && thr->y >= 0)
+		if (thr->x <= s->img_x && thr->y <= s->img_y &&
+			thr->x >= 0 && thr->y >= 0)
 		{
 			new_x = thr->x * 4 + ((s->img_x * 4) * thr->y);
 			s->s_img[new_x + 0] = ft_blue(s, thr);

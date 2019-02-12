@@ -11,6 +11,29 @@ void	ft_viseur(t_s *s)
 	while (i++ < 19)
 		mlx_pixel_put (s->m_ptr, s->w_ptr, 500, 490 + i, BLACK);
 }
+void	ft_instruc_menu(t_s *s, int color)
+{
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165, color,
+		"Menu :");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20), color,
+		"M = Hide menu");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 2), color,
+		"Arrow = Move");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 3), color,
+		"+ or - = Iteration");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 4), color,
+		"Scroll = Zoom");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 5), color,
+		"Num [1-8] = Color");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 6), color,
+		"L = Lock / Unlock");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 7), color,
+		"D = Hide link");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 8), color,
+		"V = Hide Scope");
+	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 9), color,
+		"Echap = Close");
+}
 
 void	ft_dply_menu(t_s *s)
 {
@@ -21,28 +44,7 @@ void	ft_dply_menu(t_s *s)
 	else
 		color = BLACK;
 	if (s->affmenu == 0)
-	{
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165, color,
-			"Menu :");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20), color,
-			"M = Hide menu");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 2), color,
-			"Arrow = Move");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 3), color,
-			"+ or - = Iteration");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 4), color,
-			"Scroll = Zoom");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 5), color,
-			"Num [1-8] = Color");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 6), color,
-			"L = Lock / Unlock");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 7), color,
-			"D = Hide link");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 8), color,
-			"V = Hide Scope");
-		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 9), color,
-			"Echap = Close");
-	}
+		ft_instruc_menu(s, color);
 	else
 		mlx_string_put(s->m_ptr, s->w_ptr, 15, 165, color,
 			"M = Display menu");

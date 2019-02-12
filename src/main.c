@@ -28,7 +28,7 @@ int		main(int ac, char **av)
 		ft_exit(2, s);
 	if (!(ft_strcmp(av[1], "Mandelbrot")))
 		ft_init_mand(s);
-	else if (!(ft_strcmp(av[1], "Julia"))) // probleme ouverture menu...
+	else if (!(ft_strcmp(av[1], "Julia")))
 		ft_init_julia(s, 1);
 	else if (!(ft_strcmp(av[1], "Joan")))
 		ft_init_joan(s);
@@ -53,6 +53,8 @@ void	ft_exit(int error, t_s *s)
 		perror("pthread_join");
 	if (error == 2)
 		ft_putstr("usage : ./fractol [Mandelbrot / Julia / Joan]");
+	if (error == 3)
+		perror("malloc_link");
 	free(s);
 	exit(0);
 }
