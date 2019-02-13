@@ -6,7 +6,7 @@
 /*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:25:04 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/12 15:30:48 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 15:38:35 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_thr
 	double			ci;
 	double			zr;
 	double			zi;
+	int				fzr;
+	int				fzi;
 	int				i;
 	double			x;
 	double			y;
@@ -61,6 +63,9 @@ typedef struct		s_s
 	int				affmenu;
 	double			movex;
 	double			movey;
+	double			zoom_coef;
+	double			diffx;
+	double			diffy;
 	int				color;
 	int				julia;
 	int				fract;

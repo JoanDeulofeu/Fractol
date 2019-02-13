@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fougere.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:25:59 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/12 15:26:02 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 15:41:16 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,45 +26,43 @@ void	ft_lightup_fougere(t_s *s, t_thr *thr)
 	}
 }
 
-void	ft_fougere2(t_thr *thr, int r, int zr, int zi)
+void	ft_fougere2(t_thr *thr, int r)
 {
 	r = rand() % 100;
 	if (r < 2)
 	{
-		zr = 50;
-		zi = 0.27 * zi;
+		thr->fzr = 50;
+		thr->fzi = 0.27 * thr->fzi;
 	}
 	else if (r < 17)
 	{
-		zr = -0.139 * zr + 0.263 * zi + 57;
-		zi = 0.246 * zr + 0.224 * zi - 8.28;
+		thr->fzr = -0.139 * thr->fzr + 0.263 * thr->fzi + 57;
+		thr->fzi = 0.246 * thr->fzr + 0.224 * thr->fzi - 8.28;
 	}
 	else if (r < 30)
 	{
-		zr = 0.17 * zr - 0.215 * zi + 40.8;
-		zi = 0.222 * zr + 0.176 * zi + 20.539;
+		thr->fzr = 0.17 * thr->fzr - 0.215 * thr->fzi + 40.8;
+		thr->fzi = 0.222 * thr->fzr + 0.176 * thr->fzi + 20.539;
 	}
 	else
 	{
-		zr = 0.781 * zr + 0.034 * zi + 10.75;
-		zi = -0.032 * zr + 0.739 * zi + 62.1;
+		thr->fzr = 0.781 * thr->fzr + 0.034 * thr->fzi + 10.75;
+		thr->fzi = -0.032 * thr->fzr + 0.739 * thr->fzi + 62.1;
 	}
-	thr->y = 4 * (235 - zi);
-	thr->x = 4 * (zr - 5) + 300;
+	thr->y = 4 * (235 - thr->fzi);
+	thr->x = 4 * (thr->fzr - 5) + 300;
 }
 
 void	ft_fougere(t_s *s, t_thr *thr)
 {
 	int k;
 	int r;
-	int zr;
-	int zi;
 
 	k = 0;
-	zr = 50;
-	zi = 0;
+	thr->fzr = 50;
+	thr->fzi = 0;
 	r = 0;
 	while (++k < s->itermax)
-		ft_fougere2(thr, r, zr, zi);
+		ft_fougere2(thr, r);
 	ft_lightup_fougere(s, thr);
 }

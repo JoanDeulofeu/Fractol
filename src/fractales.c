@@ -6,7 +6,7 @@
 /*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:26:16 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/12 15:37:22 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 13:18:23 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	ft_init_frac(t_s *s)
 		s->zoomy = (s->img_y / (s->low - s->high));
 		if (s->fract == 3)
 			ft_init_joan(s);
+		s->diffx = (s->right - s->left) / 2;
+		s->diffy = (s->low - s->high) / 2;
+		s->zoom_coef = 0.2;
 	}
 	s->init = 1;
 }

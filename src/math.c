@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:27:45 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/12 15:28:00 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 15:29:03 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,68 @@ int		ft_percent(int start, int end, int current)
 	return ((distance == 0) ? 100 : (placement / distance) * 100);
 }
 
-void	ft_dezoom(t_s *s)
+void	ft_dezoom(t_s *s, int x, int y)
 {
-	s->zoomx *= 0.8;
-	s->zoomy *= 0.8;
-	s->left = (s->left * s->zoomx) / s->zoomx;
-	s->right = (s->right * s->zoomx) / s->zoomx;
-	s->high = (s->high * s->zoomy) / s->zoomy;
-	s->low = (s->low * s->zoomy) / s->zoomy;
-	s->itermax -= 3;
+	double pery;
+	double perx;
+
+	perx = x / (double)XWIN;
+	pery = y / (double)YWIN;
+	s->zoomx /= 1.25;
+	s->zoomy /= 1.25;
+	s->itermax -= 20;
+	s->left -= 130 * (perx - 0.5) / s->zoomx * 2;
+	s->right -= 130 * (perx - 0.5) / s->zoomx * 2;
+	s->high -= 130 * (pery - 0.5) / s->zoomy * 2;
+	s->low -= 130 * (pery - 0.5) / s->zoomy * 2;
+	s->left -= s->zoom_coef * s->diffx;
+	s->right -= s->zoom_coef * s->diffx;
+	s->high -= s->zoom_coef * s->diffy;
+	s->low -= s->zoom_coef * s->diffy;
+	s->zoom_coef /= 0.8;
+}
+
+void	ft_zoom_joan(t_s *s, int x, int y)
+{
+	s->zoomx *= 1.29;
+	s->zoomy *= 1.29;
+	s->left = ((s->left * s->zoomx + x - 0.5 *
+		s->img_x + 160 + s->diffx) / s->zoomx);
+	s->right = ((s->right * s->zoomx + x - 0.5 *
+		s->img_x + 160 + s->diffx) / s->zoomx);
+	s->high = ((s->high * s->zoomy + y - 0.5 *
+		s->img_y + 160 + s->diffy) / s->zoomy);
+	s->low = ((s->low * s->zoomy + y - 0.5 *
+		s->img_y + 160 + s->diffy) / s->zoomy);
+	s->itermax += 3;
 }
 
 void	ft_zoom(t_s *s, int x, int y, int zoom)
 {
-	double diffx;
-	double diffy;
+	double pery;
+	double perx;
 
-	diffx = (fabs(s->left) + fabs(s->right)) / 2;
-	diffy = (fabs(s->high) + fabs(s->low)) / 2;
-	if (zoom == 1)
+	if (zoom == 1 && s->fract != 3)
 	{
-		s->zoomx *= 1.29;
-		s->zoomy *= 1.29;
-		s->left = ((s->left * s->zoomx + x - 0.5 *
-			s->img_x + 160 + diffx) / s->zoomx);
-		s->right = ((s->right * s->zoomx + x - 0.5 *
-			s->img_x + 160 + diffx) / s->zoomx);
-		s->high = ((s->high * s->zoomy + y - 0.5 *
-			s->img_y + 160 + diffy) / s->zoomy);
-		s->low = ((s->low * s->zoomy + y - 0.5 *
-			s->img_y + 160 + diffy) / s->zoomy);
-		s->itermax += 3;
+		perx = x / (double)XWIN;
+		pery = y / (double)YWIN;
+		s->zoomx *= 1.25;
+		s->zoomy *= 1.25;
+		s->itermax += 20;
+		s->left += 130 * (perx - 0.5) / s->zoomx * 2;
+		s->right += 130 * (perx - 0.5) / s->zoomx * 2;
+		s->high += 130 * (pery - 0.5) / s->zoomy * 2;
+		s->low += 130 * (pery - 0.5) / s->zoomy * 2;
+		s->left += s->zoom_coef * s->diffx;
+		s->right += s->zoom_coef * s->diffx;
+		s->high += s->zoom_coef * s->diffy;
+		s->low += s->zoom_coef * s->diffy;
+		s->zoom_coef *= 0.8;
 	}
+	if (zoom == 1 && s->fract == 3)
+		ft_zoom_joan(s, x, y);
 	if (zoom == 0)
-		ft_dezoom(s);
+		ft_dezoom(s, x, y);
 }
 
 t_thr	*ft_calcul(t_s *s, t_thr *thr)
