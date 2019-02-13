@@ -6,7 +6,7 @@
 /*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:26:34 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/13 16:28:41 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 17:31:25 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned char	ft_red(t_s *s, t_thr *thr)
 	if (s->color == 5)
 		return (sin(0.6 * (thr->i * 255 / s->itermax) + 3.1) * 127 + 128);
 	if (s->color == 6)
-		return (sin(0.05 * (thr->i * 255 / s->itermax)) * 127 + 128);
+		return (sin(0.1 * (thr->i * 255 / s->itermax)) * 127 + 128);
 	if (s->color == 7)
 		return (sin(0.1 * (thr->i * 255 / s->itermax) + 6) * 127 + 128);
 	if (s->color == 8)
@@ -54,7 +54,7 @@ unsigned char	ft_green(t_s *s, t_thr *thr)
 	if (s->color == 5)
 		return (sin(0.2 * (thr->i * 255 / s->itermax) + 2.8) * 127 + 128);
 	if (s->color == 6)
-		return (sin(2 * (thr->i * 255 / s->itermax)) * 127 + 128);
+		return (sin(0.1 * (thr->i * 255 / s->itermax) + 1.5) * 127 + 128);
 	if (s->color == 7)
 		return (sin(0.4 * (thr->i * 255 / s->itermax) + 6) * 127 + 128);
 	if (s->color == 8)
@@ -79,7 +79,7 @@ unsigned char	ft_blue(t_s *s, t_thr *thr)
 	if (s->color == 5)
 		return (sin(0.3 * (thr->i * 255 / s->itermax) + 1.8) * 127 + 128);
 	if (s->color == 6)
-		return (sin(6.2 * (thr->i * 255 / s->itermax)) * 127 + 128);
+		return (sin(0.1 * (thr->i * 255 / s->itermax) + 3.5) * 127 + 128);
 	if (s->color == 7)
 		return (sin(0.1 * (thr->i * 255 / s->itermax) + 2.5) * 127 + 128);
 	if (s->color == 8)
