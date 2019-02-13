@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:27:29 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/12 15:27:32 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 16:28:40 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_exit(int error, t_s *s)
 	if (error == 1)
 		perror("pthread_join");
 	if (error == 2)
-		ft_putstr("usage : ./fractol [Mandelbrot / Julia / Joan]");
+		ft_putstr("usage : ./fractol [Mandelbrot / Julia / Joan]\n");
 	if (error == 3)
 		perror("malloc_link");
 	free(s);

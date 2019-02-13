@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:28:08 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/12 15:28:12 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/13 16:28:49 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_instruc_menu(t_s *s, int color)
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 4), color,
 		"Scroll = Zoom");
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 5), color,
-		"Num [1-8] = Color");
+		"Num [1-9] = Color");
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 6), color,
 		"L = Lock / Unlock");
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 7), color,
-		"D = Hide link");
+		"F = Hide link");
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 8), color,
 		"V = Hide Scope");
 	mlx_string_put(s->m_ptr, s->w_ptr, 15, 165 + (20 * 9), color,
